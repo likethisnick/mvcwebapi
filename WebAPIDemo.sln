@@ -5,6 +5,10 @@ VisualStudioVersion = 15.0.28307.271
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI", "WebAPI\WebAPI.csproj", "{913CC6E3-AA5D-4CDD-8C65-50C6C4889F1E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLibrary", "DataLibrary\DataLibrary.csproj", "{A9BD785F-9432-4B9B-8BD0-B7FD8604185A}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "localconnectedDB", "localconnectedDB\localconnectedDB.sqlproj", "{AE81D77E-5FC9-48C6-85B5-7F956196FDF5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,16 @@ Global
 		{913CC6E3-AA5D-4CDD-8C65-50C6C4889F1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{913CC6E3-AA5D-4CDD-8C65-50C6C4889F1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{913CC6E3-AA5D-4CDD-8C65-50C6C4889F1E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9BD785F-9432-4B9B-8BD0-B7FD8604185A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9BD785F-9432-4B9B-8BD0-B7FD8604185A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9BD785F-9432-4B9B-8BD0-B7FD8604185A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9BD785F-9432-4B9B-8BD0-B7FD8604185A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE81D77E-5FC9-48C6-85B5-7F956196FDF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE81D77E-5FC9-48C6-85B5-7F956196FDF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE81D77E-5FC9-48C6-85B5-7F956196FDF5}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{AE81D77E-5FC9-48C6-85B5-7F956196FDF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE81D77E-5FC9-48C6-85B5-7F956196FDF5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE81D77E-5FC9-48C6-85B5-7F956196FDF5}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

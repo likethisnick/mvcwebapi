@@ -11,7 +11,7 @@ namespace DataLibrary.DataAccess
 {
 	public class HttpWebRequestToCrm
 	{
-		private const string authServiceUri = @"/ServiceModel/AuthService.svc/Login";
+		private const string AuthServiceUri = @"/ServiceModel/AuthService.svc/Login";
 		public static CookieContainer AuthCookie = new CookieContainer();
 
 		// Вспомогательный класс для десериализации JSON-объекта из HTTP-ответа.
@@ -28,7 +28,7 @@ namespace DataLibrary.DataAccess
 
 		public static ResponseStatus BpmAuthentificationResponse(string baseUri, string userName, string userPassword)
 		{
-			if (WebRequest.Create(baseUri + authServiceUri) is HttpWebRequest authRequest)
+			if (WebRequest.Create(baseUri + AuthServiceUri) is HttpWebRequest authRequest)
 			{
 				authRequest.Method = "POST";
 				// Определение типа контента запроса.

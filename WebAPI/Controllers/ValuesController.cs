@@ -7,18 +7,26 @@ using System.IO;
 using System.Xml;
 using System.Xml.Linq;
 using System.Net.Http;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Script.Serialization;
 using DataLibrary.DataAccess;
+using Newtonsoft.Json;
 
 namespace WebAPI.Controllers
 {
-	
-	public class ResponcePerformances
+	[DataContract]
+	public class ContactList
 	{
-		public string GetNumberOfPerformancesResult { get; set; }
+		[DataMember (Name = "GetAllContactsInformationResult")] public List<Contact> ContactListContainer { get; set; }
+	}
+	[DataContract]
+	public class Contact
+	{
+		[DataMember] public Guid Id { get; set; }
+		[DataMember] public string Name { get; set; }
 	}
 
 	public class ValuesController : ApiController
@@ -68,7 +76,7 @@ namespace WebAPI.Controllers
 							{
 								// Десериализация HTTP-ответа во вспомогательный объект.
 								string responseText = reader.ReadToEnd();
-								var status2 = new JavaScriptSerializer().Deserialize<ResponcePerformances>(responseText);
+								var status2 = new JavaScriptSerializer().Deserialize<ContactList>(responseText);
 							}
 						}
 					}
@@ -82,14 +90,14 @@ namespace WebAPI.Controllers
 		public static void Test2(string userName, string userPassword)
 		{
 			HttpWebRequestToCrm newRequest = new HttpWebRequestToCrm();
-			var status = HttpWebRequestToCrm.BpmAuthentificationResponse(getUri, "Supervisor", "Supervisor");
+			var status = HttpWebRequestToCrm.BpmAuthentificationResponse(BaseUri, "Supervisor", "Supervisor");
 
 			// Проверка статуса аутентификации.
 			if (status != null)
 			{
 				if (status.Code == 0)
 				{
-					if (WebRequest.Create(NewUri) is HttpWebRequest dataRequest)
+					if (WebRequest.Create(getUri) is HttpWebRequest dataRequest)
 					{
 						dataRequest.Method = "GET";
 						dataRequest.ContentType = "application/json";
@@ -102,13 +110,14 @@ namespace WebAPI.Controllers
 						{
 							using (var reader = new StreamReader(response.GetResponseStream() ?? throw new InvalidOperationException()))
 							{
-								// Десериализация HTTP-ответа во вспомогательный объект.
-								string responseText = reader.ReadToEnd();
-								var status2 = new JavaScriptSerializer().Deserialize<ResponcePerformances>(responseText);
+								using (JsonTextReader jsonTextReader = new JsonTextReader((TextReader)reader))
+								{
+									JsonSerializer serializer = new JsonSerializer();
+									var getContactList = serializer.Deserialize<ContactList>((JsonReader)jsonTextReader);
+								}
 							}
 						}
 					}
-
 					return;
 				}
 			}
